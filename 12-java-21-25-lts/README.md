@@ -1,32 +1,32 @@
 # 12 - Java 21 e Java 25 LTS
 
-## 🎯 Objetivo
+## Objetivo
 
-Entender recursos modernos além do Java 17 e acompanhar o ciclo LTS da linguagem.
+Entender recursos modernos alem da base inicial de Java moderno e acompanhar o ciclo LTS da linguagem.
 
-## ✅ Checklist
+## Checklist
 
 - [ ] Java 21 como LTS anterior
 - [ ] Java 25 como LTS atual no ciclo 2026
 - [ ] Virtual threads
 - [ ] Sequenced collections
 - [ ] Pattern matching para switch
-- [ ] Record patterns, noção
-- [ ] Unnamed classes e instance main methods, noção
-- [ ] Scoped values, noção
-- [ ] Structured concurrency, noção
-- [ ] Quando atualizar versão de Java em projeto real
+- [ ] Record patterns, nocao
+- [ ] Unnamed classes e instance main methods, nocao
+- [ ] Scoped values, nocao
+- [ ] Structured concurrency, nocao
+- [ ] Quando atualizar versao de Java em projeto real
 - [ ] Compatibilidade com Spring Boot
-- [ ] Diferença entre feature preview, incubator e final
+- [ ] Diferenca entre feature preview, incubator e final
 
-## 💡 Por que importa no backend?
+## Por que importa no backend?
 
-Versões LTS definem a base tecnológica de projetos corporativos e influenciam performance, bibliotecas e suporte.
+Versoes LTS definem a base tecnologica de projetos corporativos e influenciam performance, bibliotecas e suporte.
 
-## 🧪 Exercício sugerido
+## Exercicio sugerido
 
-Comparar exemplos simples entre Java 17, 21 e recursos mais recentes.
+Comparar exemplos simples entre Java 21, Java 25 e recursos mais recentes da linguagem.
 
-## 📌 Percepções
+## Percepcoes
 
-> Registrar aprendizados conforme o estudo avançar.
+> Registrar aprendizados conforme o estudo avancar.
