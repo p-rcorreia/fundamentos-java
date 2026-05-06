@@ -1,10 +1,10 @@
-# 06 - Exceptions
+﻿# 06 - Exceptions
 
-## 🎯 Objetivo
+## Objetivo
 
 Entender como Java representa, lança e trata erros técnicos e de regra de negócio.
 
-## ✅ Checklist
+## Checklist
 
 - [ ] O que são exceções
 - [ ] Checked exceptions
@@ -20,14 +20,10 @@ Entender como Java representa, lança e trata erros técnicos e de regra de neg�
 - [ ] Tratamento global no Spring Boot
 - [ ] Diferença entre erro de regra de negócio e erro técnico
 
-## 💡 Por que importa no backend?
+## Por que importa no backend?
 
 APIs precisam transformar falhas em respostas HTTP claras e consistentes.
 
-## 🧪 Exercício sugerido
-
-Criar exceções para recurso não encontrado, regra de negócio inválida e erro técnico simulado.
-
-## 📌 Percepções
+## Percepções
 
 > Registrar aprendizados conforme o estudo avançar.
