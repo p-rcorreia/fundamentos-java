@@ -1,10 +1,10 @@
-# 15 - Logging em Java
+﻿# 15 - Logging em Java
 
-## 🎯 Objetivo
+## Objetivo
 
 Entender como registrar eventos úteis para depuração, operação e investigação de problemas.
 
-## ✅ Checklist
+## Checklist
 
 - [ ] SLF4J
 - [ ] Logback
@@ -16,14 +16,10 @@ Entender como registrar eventos úteis para depuração, operação e investiga�
 - [ ] Diferença entre log e exceção
 - [ ] Configuração por ambiente
 
-## 💡 Por que importa no backend?
+## Por que importa no backend?
 
 Logs ajudam a entender comportamento em produção e investigar falhas sem depender do debugger.
 
-## 🧪 Exercício sugerido
-
-Criar logs com diferentes níveis e simular uma falha de regra de negócio.
-
-## 📌 Percepções
+## Percepções
 
 > Registrar aprendizados conforme o estudo avançar.
