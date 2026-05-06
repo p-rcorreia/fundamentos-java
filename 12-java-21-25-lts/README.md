@@ -1,8 +1,8 @@
-# 12 - Java 21 e Java 25 LTS
+﻿# 12 - Java 21 e Java 25 LTS
 
 ## Objetivo
 
-Entender recursos modernos alem da base inicial de Java moderno e acompanhar o ciclo LTS da linguagem.
+Entender recursos modernos além da base inicial de Java moderno e acompanhar o ciclo LTS da linguagem.
 
 ## Checklist
 
@@ -10,23 +10,79 @@ Entender recursos modernos alem da base inicial de Java moderno e acompanhar o c
 - [ ] Java 25 como LTS atual no ciclo 2026
 - [ ] Virtual threads
 - [ ] Sequenced collections
-- [ ] Pattern matching para switch
-- [ ] Record patterns, nocao
-- [ ] Unnamed classes e instance main methods, nocao
-- [ ] Scoped values, nocao
-- [ ] Structured concurrency, nocao
-- [ ] Quando atualizar versao de Java em projeto real
+- [x] Pattern matching para switch
+- [ ] Record patterns, noção
+- [ ] Unnamed classes e instance main methods, noção
+- [ ] Scoped values, noção
+- [ ] Structured concurrency, noção
+- [ ] Quando atualizar versão de Java em projeto real
 - [ ] Compatibilidade com Spring Boot
-- [ ] Diferenca entre feature preview, incubator e final
+- [ ] Diferença entre feature preview, incubator e final
 
 ## Por que importa no backend?
 
-Versoes LTS definem a base tecnologica de projetos corporativos e influenciam performance, bibliotecas e suporte.
+Versões LTS definem a base tecnológica de projetos corporativos e influenciam performance, bibliotecas e suporte.
 
-## Exercicio sugerido
+## Pattern matching para switch
 
-Comparar exemplos simples entre Java 21, Java 25 e recursos mais recentes da linguagem.
+Pattern matching permite escrever verificações de tipo de forma mais direta.
 
-## Percepcoes
+Com `instanceof`, a ideia fica assim:
 
-> Registrar aprendizados conforme o estudo avancar.
+```java
+Object valor = "Java";
+
+if (valor instanceof String texto) {
+    System.out.println(texto.toUpperCase());
+}
+```
+
+No `switch`, a ideia moderna é deixar o código mais expressivo quando diferentes tipos precisam ser tratados.
+
+Exemplo conceitual:
+
+```java
+static String descrever(Object valor) {
+    return switch (valor) {
+        case String texto -> "Texto: " + texto;
+        case Integer numero -> "Número: " + numero;
+        case null -> "Valor nulo";
+        default -> "Tipo desconhecido";
+    };
+}
+```
+
+Esse estilo ajuda a reduzir `if/else` encadeado quando o código precisa reagir a diferentes formatos de entrada.
+
+## Sealed classes e pattern matching
+
+`sealed classes` combinam bem com pattern matching porque limitam quais tipos podem existir.
+
+```java
+public sealed interface Evento
+        permits PedidoCriado, PedidoCancelado {
+}
+
+public record PedidoCriado(Long id) implements Evento {
+}
+
+public record PedidoCancelado(Long id, String motivo) implements Evento {
+}
+```
+
+Depois, o código pode tratar cada tipo de evento de forma clara:
+
+```java
+static String descrever(Evento evento) {
+    return switch (evento) {
+        case PedidoCriado criado -> "Pedido criado: " + criado.id();
+        case PedidoCancelado cancelado -> "Pedido cancelado: " + cancelado.motivo();
+    };
+}
+```
+
+Essa combinação ajuda a modelar domínios com possibilidades conhecidas e controladas.
+
+## Percepções
+
+> Registrar aprendizados conforme o estudo avançar.
