@@ -1,10 +1,10 @@
-# 04 - Collections
+﻿# 04 - Collections
 
-## 🎯 Objetivo
+## Objetivo
 
 Entender as principais estruturas de coleção em Java e quando usar cada uma.
 
-## ✅ Checklist
+## Checklist
 
 - [ ] `List`
 - [ ] `ArrayList`
@@ -25,14 +25,10 @@ Entender as principais estruturas de coleção em Java e quando usar cada uma.
 - [ ] Imutabilidade em coleções
 - [ ] Quando usar cada estrutura
 
-## 💡 Por que importa no backend?
+## Por que importa no backend?
 
 APIs, regras de negócio e persistência usam coleções o tempo todo para listar, buscar, agrupar e transformar dados.
 
-## 🧪 Exercício sugerido
-
-Criar exemplos com lista de pedidos, conjunto de categorias e mapa de status por identificador.
-
-## 📌 Percepções
+## Percepções
 
 > Registrar aprendizados conforme o estudo avançar.
