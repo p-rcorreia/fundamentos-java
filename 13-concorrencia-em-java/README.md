@@ -1,10 +1,10 @@
-# 13 - Concorrência em Java
+﻿# 13 - Concorrência em Java
 
-## 🎯 Objetivo
+## Objetivo
 
 Entender execução concorrente, thread safety e riscos de acesso simultâneo.
 
-## ✅ Checklist
+## Checklist
 
 - [ ] `Thread`
 - [ ] `Runnable`
@@ -21,14 +21,10 @@ Entender execução concorrente, thread safety e riscos de acesso simultâneo.
 - [ ] Deadlock em memória
 - [ ] Quando evitar paralelismo prematuro
 
-## 💡 Por que importa no backend?
+## Por que importa no backend?
 
 Aplicações backend lidam com múltiplas requisições, tarefas assíncronas e recursos compartilhados.
 
-## 🧪 Exercício sugerido
-
-Simular incremento concorrente com e sem controle de thread safety.
-
-## 📌 Percepções
+## Percepções
 
 > Registrar aprendizados conforme o estudo avançar.
