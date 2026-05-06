@@ -1,10 +1,10 @@
-# 09 - Enums
+﻿# 09 - Enums
 
-## 🎯 Objetivo
+## Objetivo
 
 Entender enums como tipos fechados para status, categorias e regras conhecidas.
 
-## ✅ Checklist
+## Checklist
 
 - [ ] Criar enums
 - [ ] Enums com atributos
@@ -14,14 +14,10 @@ Entender enums como tipos fechados para status, categorias e regras conhecidas.
 - [ ] Enums em entidades JPA
 - [ ] `EnumType.STRING`
 
-## 💡 Por que importa no backend?
+## Por que importa no backend?
 
 Enums ajudam a modelar status de pedidos, perfis, tipos de operação e regras com valores controlados.
 
-## 🧪 Exercício sugerido
-
-Criar um enum `StatusPedido` com métodos para validar transições.
-
-## 📌 Percepções
+## Percepções
 
 > Registrar aprendizados conforme o estudo avançar.
