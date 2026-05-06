@@ -1,10 +1,10 @@
-# 07 - Streams e Lambda
+﻿# 07 - Streams e Lambda
 
-## 🎯 Objetivo
+## Objetivo
 
 Entender lambdas, interfaces funcionais e Stream API para transformar coleções com legibilidade.
 
-## ✅ Checklist
+## Checklist
 
 - [ ] Lambda expressions
 - [ ] Functional interfaces
@@ -26,14 +26,10 @@ Entender lambdas, interfaces funcionais e Stream API para transformar coleções
 - [ ] Quando usar stream
 - [ ] Quando evitar stream para não piorar legibilidade
 
-## 💡 Por que importa no backend?
+## Por que importa no backend?
 
 Streams ajudam a transformar listas de entidades, DTOs e resultados de regras de negócio.
 
-## 🧪 Exercício sugerido
-
-Filtrar, ordenar e transformar uma lista de produtos em DTOs de resposta.
-
-## 📌 Percepções
+## Percepções
 
 > Registrar aprendizados conforme o estudo avançar.
