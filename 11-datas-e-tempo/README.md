@@ -1,10 +1,10 @@
-# 11 - Datas e tempo
+﻿# 11 - Datas e tempo
 
-## 🎯 Objetivo
+## Objetivo
 
 Entender a API moderna de datas do Java e cuidados com fuso horário.
 
-## ✅ Checklist
+## Checklist
 
 - [ ] `LocalDate`
 - [ ] `LocalDateTime`
@@ -17,14 +17,10 @@ Entender a API moderna de datas do Java e cuidados com fuso horário.
 - [ ] Diferença entre data local e instante global
 - [ ] Cuidados com datas em APIs
 
-## 💡 Por que importa no backend?
+## Por que importa no backend?
 
 Datas aparecem em agendamentos, auditoria, expiração, filtros e integração entre sistemas.
 
-## 🧪 Exercício sugerido
-
-Criar exemplos convertendo datas locais, instantes globais e strings formatadas.
-
-## 📌 Percepções
+## Percepções
 
 > Registrar aprendizados conforme o estudo avançar.
