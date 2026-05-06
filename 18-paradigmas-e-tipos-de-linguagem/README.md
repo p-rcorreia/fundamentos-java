@@ -1,10 +1,10 @@
-# 18 - Paradigmas e tipos de linguagem
+﻿# 18 - Paradigmas e tipos de linguagem
 
-## 🎯 Objetivo
+## Objetivo
 
 Criar repertório para entender Java comparando com outros estilos e ecossistemas.
 
-## ✅ Checklist
+## Checklist
 
 - [ ] Linguagem compilada
 - [ ] Linguagem interpretada
@@ -20,14 +20,10 @@ Criar repertório para entender Java comparando com outros estilos e ecossistema
 - [ ] Spring Boot vs Ruby on Rails, noção comparativa
 - [ ] Escolher ferramenta pelo contexto
 
-## 💡 Por que importa no backend?
+## Por que importa no backend?
 
 Entender paradigmas ajuda a escolher melhor a forma de modelar soluções e comparar tecnologias sem hype.
 
-## 🧪 Exercício sugerido
-
-Comparar o mesmo problema simples em estilo procedural, orientado a objetos e funcional.
-
-## 📌 Percepções
+## Percepções
 
 > Registrar aprendizados conforme o estudo avançar.
