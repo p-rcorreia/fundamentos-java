@@ -1,10 +1,10 @@
-# 05 - Generics
+﻿# 05 - Generics
 
-## 🎯 Objetivo
+## Objetivo
 
 Entender como Java usa tipos genéricos para aumentar segurança e reutilização.
 
-## ✅ Checklist
+## Checklist
 
 - [ ] O que são generics
 - [ ] Type safety
@@ -17,14 +17,10 @@ Entender como Java usa tipos genéricos para aumentar segurança e reutilizaçã
 - [ ] Generics em repositories e services
 - [ ] Erasure, apenas noção inicial
 
-## 💡 Por que importa no backend?
+## Por que importa no backend?
 
 Generics aparecem em collections, repositories, responses, services e APIs reutilizáveis.
 
-## 🧪 Exercício sugerido
-
-Criar uma classe genérica `Resultado<T>` e um repositório em memória com tipos diferentes.
-
-## 📌 Percepções
+## Percepções
 
 > Registrar aprendizados conforme o estudo avançar.
