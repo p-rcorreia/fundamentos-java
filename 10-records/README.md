@@ -11,7 +11,7 @@ Entender records como estrutura concisa e imutável para transportar dados.
 - [x] Uso em DTOs
 - [x] Diferença entre record e class
 - [x] Quando usar record em respostas de API
-- [ ] Limitações de records
+- [x] Limitações de records
 
 ## O que é um record?
 
