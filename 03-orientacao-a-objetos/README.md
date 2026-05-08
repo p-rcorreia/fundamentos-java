@@ -54,8 +54,12 @@ Orientação a objetos é um dos pontos mais importantes da linguagem. A ideia n
 - [x] Sobrescrita de métodos
 - [x] `super`
 - [x] `super` em construtores
-- [ ] Polimorfismo
-- [ ] Abstração
+- [x] Polimorfismo
+- [x] Polimorfismo com classes
+- [x] Polimorfismo com interfaces
+- [x] Classe `Object`
+- [x] Casting de objetos
+- [x] Abstração
 - [x] Interface
 - [x] `implements`
 - [x] Métodos abstratos em interfaces
@@ -63,7 +67,11 @@ Orientação a objetos é um dos pontos mais importantes da linguagem. A ideia n
 - [x] Interface estendendo interface
 - [x] Métodos `default` em interfaces
 - [x] Métodos `static` em interfaces
-- [ ] Classe abstrata
+- [x] Herança múltipla de tipo com interfaces
+- [x] Implementações múltiplas de interfaces
+- [x] Classe abstrata
+- [x] Métodos abstratos
+- [x] Diferença entre interface e classe abstrata
 - [ ] Composição
 - [ ] Associação
 - [ ] Agregação
@@ -3093,6 +3101,851 @@ class EnviadorEmailFake implements EnviadorEmail {
 
 A interface permite trocar a implementação sem trocar o contrato.
 
+## Abstração
+
+Abstração é o processo de representar algo pelo que é essencial, escondendo detalhes que não importam naquele nível.
+
+Pense nesta hierarquia:
+
+```txt
+Ser vivo
+  |
+  `-- Animal
+        |
+        `-- Cachorro
+```
+
+Quando subimos na hierarquia, estamos generalizando:
+
+```txt
+Cachorro -> Animal -> Ser vivo
+```
+
+Cada passo para cima fica mais abstrato.
+
+Quando descemos, estamos especializando:
+
+```txt
+Ser vivo -> Animal -> Cachorro
+```
+
+Cada passo para baixo fica mais específico.
+
+```txt
+Subir   -> generalizar, abstrair
+Descer  -> especializar
+```
+
+Esse conceito não é exclusivo do Java. Ele é um conceito de orientação a objetos. O Java só fornece recursos para implementar isso em código.
+
+## Classes abstratas
+
+Uma classe abstrata é uma classe usada como base para outras classes.
+
+Ela pode ter:
+
+- métodos abstratos, sem corpo;
+- métodos concretos, com corpo;
+- atributos;
+- construtores.
+
+Para criar uma classe abstrata, usamos `abstract`.
+
+```java
+abstract class Carro {
+    abstract void acelerar();
+
+    void frear() {
+        System.out.println("O carro está freando");
+    }
+}
+```
+
+Nesse exemplo:
+
+```txt
+acelerar() -> método abstrato, cada carro implementa do seu jeito
+frear()    -> método concreto, já tem implementação padrão
+```
+
+Um método abstrato termina com `;`, porque não tem corpo.
+
+```java
+abstract void acelerar();
+```
+
+Um método concreto tem corpo.
+
+```java
+void frear() {
+    System.out.println("O carro está freando");
+}
+```
+
+## Implementando uma classe abstrata
+
+Uma classe concreta que herda de uma classe abstrata precisa implementar os métodos abstratos.
+
+```java
+abstract class Carro {
+    abstract void acelerar();
+
+    void frear() {
+        System.out.println("O carro está freando");
+    }
+}
+
+class CarroF1 extends Carro {
+    @Override
+    void acelerar() {
+        System.out.println("O carro de Fórmula 1 está acelerando muito rapidamente");
+    }
+}
+
+class Caminhao extends Carro {
+    @Override
+    void acelerar() {
+        System.out.println("O caminhão está acelerando lentamente");
+    }
+}
+```
+
+Uso:
+
+```java
+public class TesteAbstract {
+    public static void main(String[] args) {
+        CarroF1 carroF1 = new CarroF1();
+        Caminhao caminhao = new Caminhao();
+
+        carroF1.acelerar();
+        carroF1.frear();
+
+        caminhao.acelerar();
+        caminhao.frear();
+    }
+}
+```
+
+Saída:
+
+```txt
+O carro de Fórmula 1 está acelerando muito rapidamente
+O carro está freando
+O caminhão está acelerando lentamente
+O carro está freando
+```
+
+`CarroF1` e `Caminhao` implementam `acelerar` de formas diferentes.
+
+Mas os dois reaproveitam `frear` da classe abstrata `Carro`.
+
+```txt
+Carro
+  |
+  |-- acelerar() abstrato
+  |-- frear() concreto
+  |
+  |-- CarroF1
+  |     `-- acelerar() próprio
+  |
+  `-- Caminhao
+        `-- acelerar() próprio
+```
+
+## Classe abstrata não pode ser instanciada
+
+Você não pode fazer:
+
+```java
+Carro carro = new Carro(); // erro de compilação
+```
+
+`Carro` é abstrata. Ela serve como base.
+
+Você instancia uma classe concreta:
+
+```java
+CarroF1 carroF1 = new CarroF1();
+Caminhao caminhao = new Caminhao();
+```
+
+Regra mental:
+
+```txt
+Classe abstrata -> modelo/base
+Classe concreta -> pode virar objeto
+```
+
+## Classe abstrata pode ter estado
+
+Classe abstrata pode ter atributos de instância.
+
+```java
+abstract class Carro {
+    int codigo = 10;
+
+    abstract void acelerar();
+}
+```
+
+Uma subclasse herda esse atributo:
+
+```java
+class Caminhao extends Carro {
+    @Override
+    void acelerar() {
+        System.out.println("O caminhão está acelerando lentamente");
+    }
+}
+```
+
+Uso:
+
+```java
+Caminhao caminhao = new Caminhao();
+
+System.out.println(caminhao.codigo); // 10
+
+caminhao.codigo = 888;
+
+System.out.println(caminhao.codigo); // 888
+```
+
+Isso é uma diferença importante em relação a interfaces.
+
+Na interface, atributos são `public static final`, ou seja, constantes.
+
+Na classe abstrata, atributos podem representar estado do objeto.
+
+## Classe abstrata pode ter construtor
+
+Mesmo não podendo ser instanciada diretamente, uma classe abstrata pode ter construtor.
+
+Esse construtor é chamado pelas subclasses usando `super(...)`.
+
+```java
+abstract class Carro {
+    int codigo;
+
+    Carro(int codigo) {
+        this.codigo = codigo;
+    }
+
+    abstract void acelerar();
+}
+
+class Caminhao extends Carro {
+    Caminhao(int codigo) {
+        super(codigo);
+    }
+
+    @Override
+    void acelerar() {
+        System.out.println("O caminhão está acelerando lentamente");
+    }
+}
+```
+
+Uso:
+
+```java
+public class TesteAbstract {
+    public static void main(String[] args) {
+        Caminhao caminhao = new Caminhao(1000);
+
+        System.out.println("Código: " + caminhao.codigo);
+    }
+}
+```
+
+Saída:
+
+```txt
+Código: 1000
+```
+
+Fluxo:
+
+```txt
+new Caminhao(1000)
+  |
+  `-- Caminhao(int codigo)
+        |
+        `-- super(codigo)
+              |
+              `-- Carro(int codigo)
+```
+
+## Classe abstrata pode implementar interface
+
+Uma classe abstrata pode implementar uma interface.
+
+```java
+interface Ligavel {
+    void ligar();
+}
+
+abstract class Veiculo implements Ligavel {
+    int codigo;
+}
+```
+
+Se a classe abstrata não implementar o método da interface, tudo bem. Ela continua abstrata e deixa essa obrigação para as subclasses concretas.
+
+```java
+class Moto extends Veiculo {
+    @Override
+    public void ligar() {
+        System.out.println("Moto ligada");
+    }
+}
+```
+
+Isso é útil quando parte do contrato pode ser adiada para classes mais específicas.
+
+## Interface vs classe abstrata
+
+Interfaces e classes abstratas se parecem em alguns pontos, mas não são a mesma coisa.
+
+| Item | Interface | Classe abstrata |
+|---|---|---|
+| Pode ser instanciada diretamente? | Não | Não |
+| Pode ter método abstrato? | Sim | Sim |
+| Pode ter método com corpo? | Sim, `default` e `static` | Sim, método comum |
+| Pode ter estado de instância? | Não | Sim |
+| Atributos comuns | `public static final` | atributos normais |
+| Construtor | Não | Sim |
+| Palavra para usar em classe | `implements` | `extends` |
+| Uma classe pode usar várias? | Sim | Não, só uma classe pai |
+
+Resumo:
+
+```txt
+Interface       -> contrato, capacidade, tipo
+Classe abstrata -> base parcial com estado e comportamento comum
+```
+
+## Herança múltipla de tipo
+
+Java não permite herança múltipla de classes.
+
+Isso não funciona:
+
+```java
+class Cachorro extends Animal, Mamifero {
+}
+```
+
+Uma classe só pode estender uma classe.
+
+Mas interfaces podem estender mais de uma interface.
+
+```java
+interface InterfaceUm {
+    void metodoUm();
+}
+
+interface InterfaceDois {
+    void metodoDois();
+}
+
+interface InterfaceTres extends InterfaceUm, InterfaceDois {
+    void metodoTres();
+}
+```
+
+Isso é chamado de herança múltipla de tipo.
+
+`InterfaceTres` carrega o contrato das três:
+
+```txt
+InterfaceTres
+  |
+  |-- metodoUm()
+  |-- metodoDois()
+  `-- metodoTres()
+```
+
+Quem implementar `InterfaceTres` precisa implementar tudo:
+
+```java
+class Exemplo implements InterfaceTres {
+    @Override
+    public void metodoUm() {
+        System.out.println("Método um");
+    }
+
+    @Override
+    public void metodoDois() {
+        System.out.println("Método dois");
+    }
+
+    @Override
+    public void metodoTres() {
+        System.out.println("Método três");
+    }
+}
+```
+
+## Implementações múltiplas de interfaces
+
+Uma classe também pode implementar várias interfaces diretamente.
+
+```java
+interface InterfaceUm {
+    void metodoUm();
+}
+
+interface InterfaceDois {
+    void metodoDois();
+}
+
+class Exemplo implements InterfaceUm, InterfaceDois {
+    @Override
+    public void metodoUm() {
+        System.out.println("Método um");
+    }
+
+    @Override
+    public void metodoDois() {
+        System.out.println("Método dois");
+    }
+}
+```
+
+Uso:
+
+```java
+public class TesteInterfaceMultipla {
+    public static void main(String[] args) {
+        Exemplo exemplo = new Exemplo();
+
+        exemplo.metodoUm();
+        exemplo.metodoDois();
+    }
+}
+```
+
+Saída:
+
+```txt
+Método um
+Método dois
+```
+
+Se a classe deixar de implementar algum método obrigatório, o código não compila.
+
+## Classe abstrata implementando interfaces
+
+Uma classe abstrata pode implementar interfaces e fornecer parte da implementação.
+
+```java
+interface InterfaceUm {
+    void metodoUm();
+}
+
+interface InterfaceDois {
+    void metodoDois();
+}
+
+abstract class ExemploBase implements InterfaceUm, InterfaceDois {
+    @Override
+    public void metodoUm() {
+        System.out.println("Método um");
+    }
+
+    @Override
+    public void metodoDois() {
+        System.out.println("Método dois");
+    }
+}
+```
+
+Como `ExemploBase` é abstrata, ela não pode ser instanciada diretamente.
+
+Mas uma classe concreta pode herdar dela:
+
+```java
+public class TesteInterfaceMultipla extends ExemploBase {
+    public static void main(String[] args) {
+        TesteInterfaceMultipla teste = new TesteInterfaceMultipla();
+
+        teste.metodoUm();
+        teste.metodoDois();
+    }
+}
+```
+
+Aqui a classe concreta reaproveita as implementações feitas na classe abstrata.
+
+## Abstração e especialização na prática
+
+Quanto melhor você separa abstração e especialização, mais reaproveitável tende a ficar o código.
+
+```txt
+Mais abstrato:
+
+SerVivo
+  |
+  `-- Animal
+        |
+        `-- Cachorro
+
+Mais específico:
+```
+
+Mas abstrair demais cedo também pode atrapalhar.
+
+Uma boa abstração nasce de comportamento comum real, não só de vontade de deixar o código "bonito".
+
+## Polimorfismo
+
+Polimorfismo é a capacidade de um objeto assumir mais de uma forma dentro de uma hierarquia.
+
+Em Java, uma forma muito comum de polimorfismo acontece quando declaramos uma variável com o tipo da superclasse, mas instanciamos uma subclasse.
+
+```txt
+Superclasse variavel = new Subclasse();
+```
+
+Exemplo:
+
+```java
+Animal meuCachorro = new Cachorro();
+Animal meuGato = new Gato();
+```
+
+`Cachorro` é um `Animal`.
+
+`Gato` é um `Animal`.
+
+Então os dois podem ser tratados como `Animal`.
+
+## Polimorfismo com classes
+
+```java
+abstract class Animal {
+    public abstract void fazerSom();
+}
+
+class Cachorro extends Animal {
+    @Override
+    public void fazerSom() {
+        System.out.println("O cachorro faz au au");
+    }
+}
+
+class Gato extends Animal {
+    @Override
+    public void fazerSom() {
+        System.out.println("O gato faz miau");
+    }
+}
+
+public class TestePolimorfismo {
+    public static void main(String[] args) {
+        Animal meuCachorro = new Cachorro();
+        Animal meuGato = new Gato();
+
+        meuCachorro.fazerSom();
+        meuGato.fazerSom();
+    }
+}
+```
+
+Saída:
+
+```txt
+O cachorro faz au au
+O gato faz miau
+```
+
+Os dois objetos foram declarados como `Animal`.
+
+Mas, em tempo de execução, o Java chama a implementação real da subclasse.
+
+```txt
+Animal meuCachorro = new Cachorro();
+       |
+       `-- em runtime chama Cachorro.fazerSom()
+
+Animal meuGato = new Gato();
+       |
+       `-- em runtime chama Gato.fazerSom()
+```
+
+## Polimorfismo acontece em runtime
+
+Polimorfismo é resolvido em tempo de execução.
+
+Isso significa que o Java olha para o objeto real criado com `new`.
+
+```java
+Animal animal = new Cachorro();
+```
+
+O tipo da variável é `Animal`.
+
+Mas o objeto real é `Cachorro`.
+
+Quando chamamos:
+
+```java
+animal.fazerSom();
+```
+
+O Java executa:
+
+```txt
+Cachorro.fazerSom()
+```
+
+Esse comportamento também é conhecido como **dynamic dispatch**.
+
+## Método comum na superclasse
+
+A superclasse também pode ter métodos concretos comuns a todas as subclasses.
+
+```java
+abstract class Animal {
+    public abstract void fazerSom();
+
+    public void tipoObjeto() {
+        System.out.println("Objeto do tipo animal");
+    }
+}
+```
+
+Uso:
+
+```java
+Animal meuCachorro = new Cachorro();
+Animal meuGato = new Gato();
+
+meuCachorro.fazerSom();
+meuGato.fazerSom();
+
+meuCachorro.tipoObjeto();
+meuGato.tipoObjeto();
+```
+
+Saída:
+
+```txt
+O cachorro faz au au
+O gato faz miau
+Objeto do tipo animal
+Objeto do tipo animal
+```
+
+`fazerSom` é específico de cada subclasse.
+
+`tipoObjeto` é comum e vem da superclasse.
+
+## Polimorfismo com interfaces
+
+Interfaces também permitem polimorfismo.
+
+```java
+interface Veiculo {
+    void acelerar();
+}
+
+class Carro implements Veiculo {
+    @Override
+    public void acelerar() {
+        System.out.println("O carro está acelerando");
+    }
+}
+
+class Moto implements Veiculo {
+    @Override
+    public void acelerar() {
+        System.out.println("A moto está acelerando");
+    }
+}
+
+public class TestePolimorfismoInterface {
+    public static void main(String[] args) {
+        Veiculo meuCarro = new Carro();
+        Veiculo minhaMoto = new Moto();
+
+        meuCarro.acelerar();
+        minhaMoto.acelerar();
+    }
+}
+```
+
+Saída:
+
+```txt
+O carro está acelerando
+A moto está acelerando
+```
+
+Aqui o contrato comum é `Veiculo`.
+
+Cada classe implementa o método `acelerar` do seu jeito.
+
+```txt
+Veiculo
+  |
+  |-- Carro -> acelerar()
+  `-- Moto  -> acelerar()
+```
+
+## Por que polimorfismo importa?
+
+Polimorfismo permite escrever código que trabalha com o tipo mais geral.
+
+Exemplo:
+
+```java
+public void executarAceleracao(Veiculo veiculo) {
+    veiculo.acelerar();
+}
+```
+
+Esse método aceita qualquer objeto que seja um `Veiculo`.
+
+```java
+executarAceleracao(new Carro());
+executarAceleracao(new Moto());
+```
+
+Isso reduz repetição e deixa o sistema mais flexível.
+
+Em vez de escrever um método para cada tipo:
+
+```java
+acelerarCarro(Carro carro)
+acelerarMoto(Moto moto)
+```
+
+Podemos escrever:
+
+```java
+executarAceleracao(Veiculo veiculo)
+```
+
+Esse é um dos motivos pelos quais interfaces são tão usadas em backend.
+
+## Classe `Object`
+
+Em Java, `Object` é a raiz da hierarquia de classes.
+
+Toda classe herda de `Object`, direta ou indiretamente.
+
+Mesmo que você escreva:
+
+```java
+class Animal {
+}
+```
+
+É como se, no topo da hierarquia, existisse:
+
+```java
+class Animal extends Object {
+}
+```
+
+Você normalmente não escreve isso, porque o compilador entende automaticamente.
+
+Hierarquia:
+
+```txt
+Object
+  |
+  `-- Animal
+        |
+        |-- Cachorro
+        `-- Gato
+```
+
+`Cachorro` herda de `Object` indiretamente:
+
+```txt
+Cachorro -> Animal -> Object
+```
+
+## Polimorfismo com `Object`
+
+Como tudo herda de `Object`, podemos declarar:
+
+```java
+Object meuCachorro = new Cachorro();
+```
+
+Isso compila.
+
+Mas existe um detalhe importante: se a variável foi declarada como `Object`, o compilador só deixa chamar métodos conhecidos por `Object`.
+
+Isso não funciona:
+
+```java
+Object meuCachorro = new Cachorro();
+
+meuCachorro.fazerSom(); // erro de compilação
+```
+
+Por quê?
+
+Porque `Object` não tem um método chamado `fazerSom`.
+
+O objeto real é um `Cachorro`, mas a variável foi declarada como `Object`.
+
+```txt
+Tipo da variável -> Object
+Objeto real      -> Cachorro
+Métodos visíveis -> métodos de Object
+```
+
+## Casting de objetos
+
+Para chamar métodos específicos de `Cachorro`, precisamos converter a referência.
+
+```java
+Object meuCachorro = new Cachorro();
+
+Cachorro objConvertido = (Cachorro) meuCachorro;
+
+objConvertido.fazerSom();
+```
+
+Também é possível fazer em uma linha:
+
+```java
+((Cachorro) meuCachorro).fazerSom();
+```
+
+Essa conversão é chamada de **casting**.
+
+```txt
+Object -> Cachorro
+```
+
+Mas cuidado: casting errado pode gerar erro em runtime.
+
+```java
+Object meuAnimal = new Gato();
+
+Cachorro cachorro = (Cachorro) meuAnimal; // erro em runtime
+```
+
+O objeto real é `Gato`, não `Cachorro`.
+
+Esse erro é:
+
+```txt
+ClassCastException
+```
+
+Por isso, casting deve ser usado com cuidado.
+
+Mais para frente, recursos como `instanceof` e pattern matching ajudam a fazer isso de forma mais segura.
+
 ## Armadilhas comuns
 
 - Achar que classe e objeto são a mesma coisa.
@@ -3125,6 +3978,16 @@ A interface permite trocar a implementação sem trocar o contrato.
 - Achar que atributo em interface é variável comum; ele é `public static final`.
 - Achar que método `default` é obrigatório na classe; ele já tem implementação.
 - Tentar sobrescrever método `static` da interface como se fosse método de instância.
+- Tentar instanciar uma classe abstrata diretamente.
+- Achar que classe abstrata é igual a interface.
+- Esquecer que classe abstrata pode ter estado e construtor.
+- Achar que Java permite herança múltipla de classes.
+- Implementar várias interfaces e esquecer algum método obrigatório.
+- Criar abstrações cedo demais sem comportamento comum real.
+- Achar que o tipo da variável e o tipo real do objeto são sempre a mesma coisa.
+- Declarar como `Object` e tentar chamar método específico da subclasse.
+- Fazer casting sem ter certeza do tipo real do objeto.
+- Esquecer que erro de casting pode aparecer em runtime como `ClassCastException`.
 
 ## Referência mental
 
@@ -3159,6 +4022,12 @@ interface    -> contrato em código
 implements   -> implementa uma interface
 abstract     -> sem implementação
 default      -> método com implementação padrão na interface
+abstração    -> generalização do essencial
+abstract     -> marca classe ou método abstrato
+classe abstrata -> base parcial para subclasses
+polimorfismo -> um objeto tratado por um tipo mais geral
+Object       -> raiz da hierarquia de classes Java
+casting      -> conversão explícita de tipo
 ```
 
 ## Por que importa no backend?
