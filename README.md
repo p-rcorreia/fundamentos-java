@@ -28,19 +28,23 @@ conceito -> percepção -> armadilha -> uso no backend
 | 04 | [Collections](./04-collections) |
 | 05 | [Generics](./05-generics) |
 | 06 | [Exceptions](./06-exceptions) |
-| 07 | [Streams e Lambda](./07-streams-e-lambda) |
-| 08 | [Optional](./08-optional) |
-| 09 | [Enums](./09-enums) |
-| 10 | [Records](./10-records) |
-| 11 | [Datas e tempo](./11-datas-e-tempo) |
-| 12 | [Java 21 e Java 25 LTS](./12-java-21-25-lts) |
-| 13 | [Concorrência em Java](./13-concorrencia-em-java) |
-| 14 | [Annotations e Reflection](./14-annotations-e-reflection) |
-| 15 | [Logging em Java](./15-logging-em-java) |
-| 16 | [JVM](./16-jvm) |
-| 17 | [Compilação e execução](./17-compilacao-e-execucao) |
-| 18 | [Paradigmas e tipos de linguagem](./18-paradigmas-e-tipos-de-linguagem) |
-| 19 | [Bibliotecas de produtividade](./19-bibliotecas-de-produtividade) |
+| 07 | [Expressões Lambda](./07-expressoes-lambda) |
+| 08 | [Programação Funcional](./08-programacao-funcional) |
+| 09 | [Stream API](./09-stream-api) |
+| 10 | [Optional](./10-optional) |
+| 11 | [Enums](./11-enums) |
+| 12 | [Records](./12-records) |
+| 13 | [Datas e tempo](./13-datas-e-tempo) |
+| 14 | [Java 21 e Java 25 LTS](./14-java-21-25-lts) |
+| 15 | [Concorrência em Java](./15-concorrencia-em-java) |
+| 16 | [Annotations e Reflection](./16-annotations-e-reflection) |
+| 17 | [Logging em Java](./17-logging-em-java) |
+| 18 | [JVM](./18-jvm) |
+| 19 | [Compilação e execução](./19-compilacao-e-execucao) |
+| 20 | [Paradigmas e tipos de linguagem](./20-paradigmas-e-tipos-de-linguagem) |
+| 21 | [Bibliotecas de produtividade](./21-bibliotecas-de-produtividade) |
+| 22 | [Entrada e saída](./22-entrada-e-saida) |
+| 23 | [Serialização](./23-serializacao) |
 
 ---
 
